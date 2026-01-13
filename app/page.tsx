@@ -1,5 +1,6 @@
 import Link from "next/link";
 import RevenueChart from "./components/RevenueChart";
+import ChatWidget from "./components/ChatWidget";
 
 export default function Home() {
   return (
@@ -96,6 +97,7 @@ export default function Home() {
           </Link>
         </section>
       </main>
+      <ChatWidget />
     </div>
   );
 }

@@ -59,10 +59,9 @@ export default function EditInvoicePage() {
       }
 
       const existing = JSON.parse(localStorage.getItem("invoices") || "[]");
-      const updated = existing.map((inv: Invoice) =>
-        inv.id === invoiceId ? formData : inv
-      );
-      localStorage.setItem("invoices", JSON.stringify(updated));
+      const updated = existing.map((inv: Invoice) => (inv.id === invoiceId ? formData : inv));
+      const { saveInvoices } = await import("../../../lib/localStorageHelpers");
+      saveInvoices(updated);
 
       router.push("/dashboard/invoices");
     } catch (err) {

@@ -23,12 +23,25 @@ export default function InvoicesPage() {
       setInvoices(JSON.parse(saved));
     }
     setIsLoading(false);
+
+    const onUpdated = () => {
+      const s = localStorage.getItem("invoices");
+      setInvoices(s ? JSON.parse(s) : []);
+    };
+
+    window.addEventListener("invoicesUpdated", onUpdated as EventListener);
+    window.addEventListener("storage", onUpdated as EventListener);
+
+    return () => {
+      window.removeEventListener("invoicesUpdated", onUpdated as EventListener);
+      window.removeEventListener("storage", onUpdated as EventListener);
+    };
   }, []);
 
   const deleteInvoice = (id: string) => {
     const updated = invoices.filter((inv) => inv.id !== id);
     setInvoices(updated);
-    localStorage.setItem("invoices", JSON.stringify(updated));
+    import("../../lib/localStorageHelpers").then(({ saveInvoices }) => saveInvoices(updated));
   };
 
   const filteredInvoices = invoices.filter((inv) =>
@@ -50,7 +63,7 @@ export default function InvoicesPage() {
         </div>
         <Link
           href="/dashboard/invoices/new"
-          className="px-4 md:px-6 py-2 md:py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors flex items-center gap-2 justify-center md:justify-start text-sm md:text-base"
+          className="px-4 md:px-6 py-2 md:py-3  hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors flex items-center gap-2 justify-center md:justify-start text-sm md:text-base"
         >
           <span>➕</span> Create Invoice
         </Link>
@@ -75,7 +88,7 @@ export default function InvoicesPage() {
           </p>
           <Link
             href="/dashboard/invoices/new"
-            className="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
+            className="inline-block px-6 py-3 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
           >
             Create Invoice
           </Link>

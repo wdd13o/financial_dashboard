@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import PowerOffIcon from "../components/PowerOffIcon";
+import NavLinks from "../ui/dashboard/nav-links";
 
 export default function DashboardLayout({
   children,
@@ -66,31 +67,8 @@ export default function DashboardLayout({
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-4 py-8 space-y-2">
-            <Link
-              href="/dashboard"
-              className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
-            >
-              <span className="text-xl">🏠</span>
-              <span className="font-medium">Home</span>
-            </Link>
-            
-            <Link
-              href="/dashboard/invoices"
-              className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
-            >
-              <span className="text-xl">📄</span>
-              <span className="font-medium">Invoices</span>
-            </Link>
-
-            <Link
-              href="/dashboard/invoices"
-              className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
-            >
-              <span className="text-xl">👥</span>
-              <span className="font-medium">Customers</span>
-            </Link>
-          </nav>
+          {/* Use shared NavLinks component */}
+          <NavLinks />
 
           {/* User Section */}
           <div className="border-t border-gray-200 dark:border-slate-700 p-4 space-y-4">

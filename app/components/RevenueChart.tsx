@@ -42,8 +42,9 @@ export default function RevenueChart({ months = 6 }: { months?: number }) {
       Object.keys(buckets).forEach((k) => {
         vals.push(Math.round(buckets[k] * 100) / 100);
         const [y, m] = k.split("-");
-        const monthName = new Date(Number(y), Number(m) - 1, 1).toLocaleString(undefined, { month: "short" });
-        lbls.push(monthName);
+        // show month and full year, e.g. "Jan 2024"
+        const monthYear = new Date(Number(y), Number(m) - 1, 1).toLocaleString(undefined, { month: "short", year: "numeric" });
+        lbls.push(monthYear);
       });
 
       setData(vals);

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import RevenueChart from "../components/RevenueChart";
 
 interface Invoice {
   id: string;
@@ -41,9 +42,21 @@ export default function DashboardPage() {
   return (
     <div>
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1 md:mb-2">Dashboard</h1>
-        <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Welcome back! Here's your financial overview.</p>
+      <div className="mb-6 flex items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1 md:mb-2">Dashboard</h1>
+          <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">Welcome back! Here's your financial overview.</p>
+        </div>
+
+        <div className="shrink-0">
+          <Link
+            href="/dashboard/invoices/new"
+            className="px-4 py-2 bg-white hover:bg-gray-100 text-blue-600 rounded-lg font-semibold transition-colors text-sm md:text-base text-center border border-gray-200"
+          >
+            <span className="mr-2">➕</span>
+            Create Invoice
+          </Link>
+        </div>
       </div>
 
       {/* Stats Cards - Horizontal scroll on mobile */}
@@ -85,14 +98,20 @@ export default function DashboardPage() {
         </div>
       </div>
 
+      {/* Recent revenue chart */}
+      <div className="mb-6">
+        <RevenueChart months={6} />
+      </div>
+
       {/* Recent Invoices */}
       <div className="bg-white dark:bg-slate-800 rounded-lg shadow">
         <div className="p-4 md:p-6 border-b border-gray-200 dark:border-slate-700 flex flex-col md:flex-row justify-between md:items-center gap-3">
           <h2 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Recent Invoices</h2>
           <Link
             href="/dashboard/invoices/new"
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors text-sm md:text-base text-center"
+            className="px-4 py-2 bg-white hover:bg-gray-100 text-blue-600 rounded-lg font-semibold transition-colors text-sm md:text-base text-center border border-gray-200"
           >
+            <span className="mr-2">➕</span>
             Create Invoice
           </Link>
         </div>

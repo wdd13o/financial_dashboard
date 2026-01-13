@@ -47,9 +47,12 @@ export default function NewInvoicePage() {
         description: formData.description,
       };
 
+      // persist via helper so other pages get notified
       const existing = JSON.parse(localStorage.getItem("invoices") || "[]");
       const updated = [...existing, invoice];
-      localStorage.setItem("invoices", JSON.stringify(updated));
+      // lazy import to avoid SSR issues
+      const { saveInvoices } = await import("../../../lib/localStorageHelpers");
+      saveInvoices(updated);
 
       router.push("/dashboard/invoices");
     } catch (err) {
@@ -157,7 +160,7 @@ export default function NewInvoicePage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="flex-1 py-3 px-6 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold rounded-lg transition-colors"
+              className="flex-1 py-3 px-6 bg-transparent text-white-600 hover:bg-white-50 disabled:text-blue-300 disabled:opacity-60 font-semibold rounded-lg transition-colors"
             >
               {isLoading ? "Creating..." : "Create Invoice"}
             </button>
