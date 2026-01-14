@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="620" viewBox="0 0 560 620">
+  <defs>
+    <linearGradient id="gm" x1="0" x2="1">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#gm)" />
+  <g fill="#fff" font-family="system-ui, Arial, sans-serif" font-size="20">
+    <text x="24" y="80" font-size="28" font-weight="700">Finance Dashboard — Mobile Hero</text>
+    <text x="24" y="110" font-size="14" opacity="0.95">Mobile placeholder: condensed charts.</text>
+  </g>
+  <rect x="24" y="150" width="512" height="420" rx="10" fill="#ffffff" opacity="0.08" />
+</svg>

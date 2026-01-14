@@ -1,6 +1,8 @@
 import Link from "next/link";
 import RevenueChart from "./components/RevenueChart";
 import ChatWidget from "./components/ChatWidget";
+import Image from "next/image";
+import { lusitana } from "./ui/fonts";
 
 export default function Home() {
   return (
@@ -30,7 +32,7 @@ export default function Home() {
           <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Welcome to Finance Dashboard
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className={`${lusitana.className} text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto`}>
             Manage your invoices, track expenses, and organize your finances with our comprehensive dashboard application.
           </p>
           <div className="flex gap-4 justify-center">
@@ -83,6 +85,25 @@ export default function Home() {
 
         <section className="mb-8">
           <RevenueChart months={6} />
+        </section>
+
+        <section className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12 mb-12">
+          {/* Hero images: desktop and mobile */}
+          <Image
+            src="/hero-desktop.svg"
+            width={1000}
+            height={760}
+            className="hidden md:block rounded-lg shadow-lg"
+            alt="Screenshots of the dashboard project showing desktop version"
+          />
+
+          <Image
+            src="/hero-mobile.svg"
+            width={560}
+            height={620}
+            className="block md:hidden rounded-lg shadow-lg"
+            alt="Mobile screenshots of the dashboard project"
+          />
         </section>
 
         <section className="bg-white dark:bg-slate-800 rounded-lg shadow-lg p-12 text-center">
