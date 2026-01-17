@@ -17,7 +17,7 @@ function Avatar({ author }: { author: "user" | "assistant" }) {
   );
 }
 
-export default function ChatWidget(): JSX.Element {
+export default function ChatWidget(): React.ReactElement {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { id: "m1", author: "assistant", text: "Hello — I'm your Finance Assistant. I can help with invoices, revenue insights, and navigation. How can I assist?", time: nowTs() },
